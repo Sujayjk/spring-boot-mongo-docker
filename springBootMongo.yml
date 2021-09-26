@@ -7,17 +7,16 @@ metadata:
 spec:
   replicas: 1
   template:
-     metadata:
-	   labels:
-	     name: springboot
-	   
-     spec:
-	    containers:
-		- image: sujaydockerregistry/spring-boot-mongo
-		  name: springboot
-		  ports:
-		  - name: springboot
-		    containerPort: 8080
+    metadata:
+      labels:
+	name: springboot
+    spec:
+      containers:
+      - image: sujaydockerregistry/spring-boot-mongo
+        name: springboot
+        ports:
+        - name: springboot
+	  containerPort: 8080
 ---
 # Node Port Service
 apiVersion: v1
@@ -30,7 +29,7 @@ spec:
   type: NodePort
   ports:
     - port: 8080
-	  targetPort: 8080
+      targetPort: 8080
   selector:
      name: springboot
 ---
@@ -44,24 +43,24 @@ metadata:
 spec: 
   replicas: 1
   template:
-     metadata:
-	   labels:
-	     name: mongo
-	 spec:
-	   containers:
-	   - image: mongo
-	      name: mongo
-		  ports:
-		  - name: mongo
-		    containerPort: 27017
-			hostport: 27017
-		  volumeMounts:
-		  - name: mongo-persistent-storage
-		    mountPath: /data/db
-	 volumes:
-     - name: mongo-persistent-storage
-	   hostPath:
-	     path: /tmp/dbbackup
+    metadata:
+      labels:
+	name: mongo
+    spec:
+      containers:
+      - image: mongo
+	name: mongo
+        ports:
+        - name: mongo
+          containerPort: 27017
+	  hostport: 27017
+        volumeMounts:
+        - name: mongo-persistent-storage
+          mountPath: /data/db
+      volumes:
+      - name: mongo-persistent-storage
+	hostPath:
+	  path: /tmp/dbbackup
 ---
 # Mongo Node Port RC
 apiVersion: v1
@@ -74,8 +73,6 @@ spec:
   type: ClusterIP
   ports:
     - port: 27017
-	  targetPort: 27017
+      targetPort: 27017
   selector:
     name: mongo
-  
-  
