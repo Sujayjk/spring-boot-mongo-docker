@@ -5,18 +5,18 @@ metadata:
     name: springboot
   name: spring-controller
 spec:
-  replicas: 1
-  template:
-    metadata:
-     labels:
-      name: springboot
-    spec:
-     containers:
-     - image: sujaydockerregistry/spring-boot-mongo
-       name: springboot
-       ports:
-       - name: springboot
-	containerPort: 8080
+ replicas: 1
+ template:
+  metadata:
+   labels:
+     name: springboot
+  spec:
+   containers:
+   - image: sujaydockerregistry/spring-boot-mongo
+     name: springboot
+     ports:
+     - name: springboot
+       containerPort: 8080
 ---
 # Cluster IP Service
 apiVersion: v1
