@@ -8,8 +8,8 @@ spec:
   replicas: 1
   template:
     metadata:
-      labels:
-	name: springboot
+     labels:
+      name: springboot
     spec:
       containers:
       - image: sujaydockerregistry/spring-boot-mongo
